@@ -6,6 +6,8 @@ const puppeteer = require('puppeteer-core');
 module.exports = async (req, res) => {
   const executablePath = await chromium.executablePath;
 
+  const url = new URL(req);
+
   const browser = await puppeteer.launch({
     executablePath,
     args: chromium.args,
@@ -14,10 +16,14 @@ module.exports = async (req, res) => {
 
   const page = await browser.newPage();
 
-  await page.goto(
-    'https://data.stackexchange.com/stackoverflow/query/4038/find-interesting-unanswered-questions/'
-  );
-  const screenshot = await page.screenshot();
+  await page.goto(url.searchParams.get('site') || 'https://www.wikipedia.org');
+  const screenshot = await page.screenshot({
+    type: 'png',
+  });
+
+  await browser.close();
+
+  res.setHeader('Content-Type', `image/png`);
 
   res.send({ screenshot });
 };
