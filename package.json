@@ -1,0 +1,13 @@
+{
+  "name": "automator",
+  "version": "0.1.0",
+  "main": "",
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer-core": "^10.1.0"
+  }
+}
