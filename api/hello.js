@@ -16,7 +16,14 @@ module.exports = async (req, res) => {
 
   const page = await browser.newPage();
 
+  await page.setViewport({
+    width: 1920,
+    height: 1080,
+    deviceScaleFactor: 1,
+  });
+
   await page.goto(url.searchParams.get('site') || 'https://www.wikipedia.org');
+
   const screenshot = await page.screenshot({
     type: 'png',
   });
@@ -24,6 +31,6 @@ module.exports = async (req, res) => {
   await browser.close();
 
   res.setHeader('Content-Type', `image/png`);
-
   res.send({ screenshot });
+  
 };
