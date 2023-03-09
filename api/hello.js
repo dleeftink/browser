@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer-core');
 module.exports = async (req, res) => {
   const executablePath = await chromium.executablePath;
 
-  const url = new URL('https://x.x'+req);
+  const url = new URL(`https://x.x${req.url}`);
 
   const browser = await puppeteer.launch({
     executablePath,
