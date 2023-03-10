@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
 
   await browser.close();
 
-  res.setHeader('Content-Type', `image/png`);
-  res.send({ screenshot });
+  //res.setHeader('Content-Type', `image/png`);
+  res.send({ executablePath });
   
 };
